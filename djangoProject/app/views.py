@@ -8,7 +8,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 def index(request, *args, **kwargs):
         #id playlisty oraz dane potrzebne do "zalogowania się" aby pobierać dane z API
         playlist_uri = 'spotify:playlist:37i9dQZEVXbMDoHDwVN2tF'
-        client = '45474390b5d54ce6bbc34e902430beac'
+        client = '...'
         secret = '...'
         spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
             client_id=client,
@@ -23,7 +23,6 @@ def index(request, *args, **kwargs):
         #metoda POST jeśli ktoś wybrał dany gatunek
         if request.method == 'POST':
                 genre_uri = request.POST.get("uri")
-
                 results_Rec = spotify.recommendations(seed_genres=[genre_uri])
                 final_result_Rec = results_Rec['tracks']
 
