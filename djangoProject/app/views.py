@@ -9,7 +9,7 @@ def index(request, *args, **kwargs):
         #id playlisty oraz dane potrzebne do "zalogowania się" aby pobierać dane z API
         playlist_uri = 'spotify:playlist:37i9dQZEVXbMDoHDwVN2tF'
         client = '45474390b5d54ce6bbc34e902430beac'
-        secret = '815eb47b093b4ae098dd698caa2aad1b'
+        secret = '...'
         spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(
             client_id=client,
             client_secret=secret))
