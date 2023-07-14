@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{#    <link rel="stylesheet" href="D:\Users\adkas\Documents\PycharmProjects\djangoProject\app\static\css.mycss.css">#}
+    <title>Music genres</title>
+
+  </head>
+  <body>
+
+
+  <!-- As a heading -->
+
+    <nav class="navbar navbar-dark bg-primary">
+        <form method="get">
+            <button type="submit" class="btn"><i class="fa fa-home"></i></button>
+        </form>
+    <span class="navbar-brand mb-0 h1">PAINT project</span>
+    </nav>
+
+    <div class="jumbotron ">
+{#        <img src="app/templates/pies.jpg" >#}
+        <h3 class="text-center">Your favourite music genre </h3>
+        {% if genre %}
+            <h3 class="text-uppercase text-center text-info" >{{ genre}} </h3>
+        {% endif %}
+
+    </div>
+
+  <div class="container">
+    <form method="post">
+      {% csrf_token %}
+        <div class= "form-group row">
+            <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Input Genre</label>
+            <div class="col-sm-6">
+                <select name="uri" id="colFormLabelLg" placeholder="type uri">
+                    {% if results_Genre %}
+                        {% for g in results_Genre %}
+                            <option value="{{ g }}">{{ g }}</option>
+                        {% endfor %}
+
+
+                    {% endif %}
+                </select>
+                <button type="submit" class="btn-dark"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+  </div>
+
+
+    {% if results_Rec %}
+        <div class="container bg-dark p-4">
+        <label class="text-left"><h1 class="text-white"> This is the music you may like! </h1></label>
+        {% for r in results_Rec %}
+            <ol class="list-group mt-2">
+                <li class="list-group-item bg-info text-center"><h3 class="text-white" >{{r.name}}  </h3> </li>
+            <iframe src="https://open.spotify.com/embed/track/{{ r.id }}" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </ol><hr>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+
+  </body>
+</html>
